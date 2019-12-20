@@ -1,0 +1,10 @@
+<h2><b><u><%= @service.name %></u></b></h2>
+  <h3><%= @service.service_type %>
+  <br><b>Miejscowość:</b> <%= @service.location %>
+  </h3>
+    <h4>strona internetowa: <b><%= @service.website %></b>
+      <br>kontakt: <b><%= @service.contact %></b>
+      <br>opis: <b><%= @service.description %></b>
+      <br>id: <b><%= @service.id %></b>
+    </h4>
+  <%= link_to 'Dodaj ocenę',  new_service_rating_path(@service), class: "btn btn-default btn-xs" %><%= link_to "Wstecz", services_path, class: "btn btn-primary btn-xs" %>

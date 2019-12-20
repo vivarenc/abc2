@@ -1,0 +1,11 @@
+<%= form_for @calc do |f| %>
+  <div class="form-group">
+      <%= f.label :adults_quantity, "Liczba dorosłych" %>
+      <%= f.text_field :adults_quantity, class: "form-control" %>
+  </div>
+  <div class="form-group">
+      <%= f.label :kids_quantity, "Liczba dzieci" %>
+      <%= f.text_field :kids_quantity, class: "form-control" %>
+  </div>
+  <%= f.submit "Edytuj i przelicz ponownie", class: "btn btn-primary" %>
+<% end %>

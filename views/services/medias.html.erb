@@ -1,0 +1,36 @@
+<h3><b>Lista fotografów i kamerzystów weselnych</b></h3>
+<h4><b>Obecna liczba fotografów i kamerzystów:</b> <%= @services_count %>
+<div class="container">
+  <% if user_signed_in? %>
+<br><p><%= link_to "Edytuj fotografa/kamerzystę",  my_services_path, class: "btn btn-primary" %><%= link_to "Dodaj nowego fotografa/kamerzystę",  new_service_path, class: "btn btn-success" %><%= link_to "Wróć do bazy usług",  services_path, class: "btn btn-default" %></p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nazwa / Imię i nazwisko</th>
+      <th>Miejscowość</th>
+      <th>Strona internetowa</th>
+      <th>Akcje</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @services.each do |service| %>
+      <tr>
+        <td><%= service.name %></td>
+        <td><%= service.location %></td>
+        <td><%= service.website %></td>
+        <td>
+          <%= link_to "Pokaż szczegóły", service_path(service), class: "btn btn-default btn-xs" %>
+          <%= link_to "Pokaż szczegóły", service_path(service), class: "btn btn-successful btn-xs" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+  <% else %>
+  <p class="lead">
+    Musisz się zalogować, aby mieć dostęp do listy gości.
+    <%= link_to "Zaloguj się", new_user_session_path %>
+    <% end %>
+  </p>
+</div>

@@ -1,0 +1,69 @@
+<h1>Kalkulator alkoholi i napojów</h1>
+<p>Sprawdź, ile w przybliżeniu potrzebujesz alkoholu na wesele:</p>
+Liczba gości z listy: <%= @guests_count %>
+<% if @calcs_count > 0 %>
+<br>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Liczba dorosłych</th>
+      <th>Liczba dzieci</th>
+      <th>Akcje</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @calcs.each do |calc| %>
+      <tr>
+        <td><%= calc.adults_quantity %></td>
+        <td><%= calc.kids_quantity %></td>
+        <td>
+          <%= link_to "Edytuj liczbę gości",  edit_calc_path(calc), class: "btn btn-primary" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Rodzaj alkoholu</th><th>Proponowana ilość</th><th>Opcje</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td><td></td><td colspan="4"><center><b>ilość butelek:</b></td>
+    </tr>
+    <tr>
+      <td></td><td></td><td><b>0,5l</td><td><b>0,7l</td><td><b>0,75l</td><td><b>1l</td>
+    </tr>
+      <tr>
+        <td><b>Wódka</td><td><%= (@calcs_adult * 0.5).round  %> litrów</td><td><%= @calcs_adult%></td><td><%= ((@calcs_adult * 0.5)/0.7).round  %> ></td>
+        <td>-</td><td><%= (@calcs_adult / 2).round  %></td>
+      </tr>
+      <tr>
+        <td><b>Wino</td><td><%= (@calcs_adult / 6.5).round  %> litrów</td><td>-</td><td>-</td><td><%= ((@calcs_adult / 6.5)/0.75).round  %></td><td>-</td>
+      </tr>
+      <tr>
+        <td><b>Szampan</td><td><%= (@calcs_adult / 8).round  %> litrów</td><td>-</td><td>-</td><td><%= ((@calcs_adult / 8)/0.75).round  %></td><td>-</td>
+      </tr>
+      <tr>
+        <td></td><td></td><td><b>Standartowe</td><td><b>Smakowe / 0%</td><td></td><td></td>
+      </tr>
+      <tr>
+        <td><b>Piwo</td><td><%= ((@calcs_adult / 4) + (@calcs_adult / 10)).round  %> szt.</td><td><%= (@calcs_adult / 4).round  %> szt.</td>
+          <td><%= (@calcs_adult / 10).round  %> szt.</td>
+      </tr>
+      <tr>
+        <td></td><td></td><td><b>Wody (gaz/n.gaz)</td><td><b>Soki</td><td><b>Coca Cola / Pepsi</td><td><b>Sprite / Fanta itp.</td>
+      </tr>
+      <tr>
+        <td><b>Napoje</td><td><%= ((@calcs_adult + @calcs_kids) *2).round  %> litrów</td><td><%= ((@calcs_adult + @calcs_kids) *2*0.3).round  %> litrów</td>
+          <td><%= ((@calcs_adult + @calcs_kids) *2*0.35).round  %> litrów</td>
+          <td><%= ((@calcs_adult + @calcs_kids) *2*0.2).round  %> litrów</td><td><%= ((@calcs_adult + @calcs_kids) *2*0.15).round  %> litrów</td>
+      </tr>
+  </tbody>
+</table>
+<% else %>
+<br>Aby aplikacja dokonała kalkulacji, podaj liczbę gości:
+<br><%= link_to "Dodaj liczbę gości",  new_calc_path, class: "btn btn-primary" %>
+<% end %>

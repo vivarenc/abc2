@@ -1,0 +1,28 @@
+<%= form_for @service do |f| %>
+  <div class="form-group">
+    <%= f.label :service_type, "Rodzaj usługi:" %>
+    <%= f.select :service_type, [['Zespół weselny / DJ', 'Zespół weselny / DJ'], ['Sala weselna', 'Sala weselna'],
+    ['Fotograf / Kamerzysta', 'Fotograf / Kamerzysta']], class: "form-control" %>
+  </div>
+  <div class="form-group">
+      <%= f.label :name, "Nazwa sali lub zespołu / Imię i nazwisko" %>
+      <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+      <%= f.label :location, "Miejscowość" %>
+      <%= f.text_field :location, class: "form-control" %>
+  </div>
+  <div class="form-group">
+      <%= f.label :website, "Strona internetowa" %>
+      <%= f.text_field :website, class: "form-control" %>
+  </div>
+  <div class="form-group">
+      <%= f.label :contact, "Kontakt" %>
+      <%= f.text_field :contact, class: "form-control" %>
+  </div>
+  <div class="form-group">
+      <%= f.label :description, "Opis" %>
+      <%= f.text_area :description, class: "form-control" %>
+  </div>
+  <%= f.submit "Dodaj usługę", class: "btn btn-primary" %><%= link_to "Wróć do bazy usług",  services_path, class: "btn btn-default" %>
+<% end %>

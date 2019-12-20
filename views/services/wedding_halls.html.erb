@@ -1,0 +1,37 @@
+<h3><b>Lista sal weselnych</b></h3>
+<h4><b>Obecna liczba sal weselnych:</b> <%= @services_count %>
+<div class="container">
+  <% if user_signed_in? %>
+<br><p><%= link_to "Edytuj swoją salę",  my_services_path, class: "btn btn-primary" %><%= link_to "Dodaj nową salę",  new_service_path, class: "btn btn-success" %><%= link_to "Wróć do bazy usług",  services_path, class: "btn btn-default" %></p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nazwa sali</th>
+      <th>Miejscowość</th>
+      <th>Strona internetowa</th>
+      <th>Akcje</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @services.each do |service| %>
+      <tr>
+        <td><%= service.name %></td>
+        <td><%= service.location %></td>
+        <td><%= service.website %></td>
+        <td>
+          <%= link_to "Pokaż szczegóły", service_path(service), class: "btn btn-default btn-xs" %>
+          <%= link_to 'Dodaj ocenę',  new_service_rating_path(service), class: "btn btn-default btn-xs"   %>
+          <%= link_to 'Dodaj ocenę2',  new_rating_path(service), class: "btn btn-default btn-xs"   %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+  <% else %>
+  <p class="lead">
+    Musisz się zalogować, aby mieć dostęp do listy gości.
+    <%= link_to "Zaloguj się", new_user_session_path %>
+    <% end %>
+  </p>
+</div>

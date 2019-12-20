@@ -1,0 +1,25 @@
+<%= form_for @guest do |f| %>
+  <div class="form-group">
+      <%= f.label :name, "Imię i nazwisko" %>
+      <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :age_group, "Grupa wiekowa" %>
+    <%= f.select :age_group, [['13 i mniej lat', '13 i mniej lat'], ['13-17 lat', '13-17 lat'], ['18-30 lat', '18-30 lat'],
+    ['31-45 lat', '31-45 lat'], ['46-59 lat', '46-59 lat'], ['60 lat i więcej', '60 lat i więcej']], class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :family, "Wybierz rodzinę/grupę" %>
+    <%= f.select :family, [['Rodzina Panny Młodej od strony matki', 'Rodzina Panny Młodej od strony matki'],
+    ['Rodzina Panny Młodej od strony ojca', 'Rodzina Panny Młodej od strony ojca'],
+    ['Rodzina Pana Młodego od strony matki', 'Rodzina Pana Młodego od strony matki'],
+    ['Rodzina Pana Młodego od strony ojca', 'Rodzina Pana Młodego od strony ojca'],
+    ['Znajomi/Delegacje', 'Znajomi/Delegacje']], class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :role, "Rola na weselu" %>
+    <%= f.select :role, [['Brak', 'Brak'], ['Świadek', 'Świadek'], ['Świadkowa', 'Świadkowa'],
+    ['Rodzic Panny Młodej', 'Rodzic Panny Młodej'],['Rodzic Pana Młodego', 'Rodzic Pana Młodego']], class: "form-control" %>
+  </div>
+  <%= f.submit "Dodaj gościa", class: "btn btn-primary" %><%= link_to "Wróć do listy gości",  guests_path, class: "btn btn-default" %>
+<% end %>

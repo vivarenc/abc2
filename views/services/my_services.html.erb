@@ -1,0 +1,34 @@
+<h3><b>Lista Twoich usług</b></h3>
+<div class="container">
+  <% if user_signed_in? %>
+<br><p><%= link_to "Wróć do bazy usług",  services_path, class: "btn btn-primary" %><%= link_to "Dodaj nową usługę",  new_service_path, class: "btn btn-success" %></p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nazwa usługi</th>
+      <th>Rodzaj usługi</th>
+      <th>Akcje</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @services.each do |service| %>
+      <tr>
+        <td><%= service.name %></td>
+        <td><%= service.service_type %></td>
+        <td>
+          <%= link_to "Pokaż szczegóły", service_path(service), class: "btn btn-default btn-xs" %>
+          <%= link_to "Edytuj", edit_service_path(service), class: "btn btn-primary btn-xs" %>
+          <%= link_to "Usuń", service_path(service), method: :delete, class: "btn btn-danger btn-xs", data: { confirm: "Czy na pewno chcesz usunąć?"} %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+  <% else %>
+  <p class="lead">
+    Musisz się zalogować, aby mieć dostęp do listy gości.
+    <%= link_to "Zaloguj się", new_user_session_path %>
+    <% end %>
+  </p>
+</div>

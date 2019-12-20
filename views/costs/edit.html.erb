@@ -1,0 +1,17 @@
+<%= form_for @cost do |f| %>
+  <div class="form-group">
+    <%= f.label :cost_type, "Rodzaj kosztu" %>
+    <%= f.select :cost_type, [['Sala weselna', 'Sala weselna'], ['Kościoł', 'Kościoł'], ['Dekoracje', 'Dekoracje'],
+    ['Zespół', 'Zespół'], ['Fotograf', 'Fotograf'], ['Kamerzysta', 'Kamerzysta'], ['Biżuteria', 'Biżuteria'],
+    ['Inne', 'Inne']], class: "form-control" %>
+  </div>
+  <div class="form-group">
+      <%= f.label :amount, "Kwota [zł]" %>
+      <%= f.text_field :amount, class: "form-control" %>
+  </div>
+  <div class="form-group">
+      <%= f.label :notes, "Notatki" %>
+      <%= f.text_field :notes, class: "form-control" %>
+  </div>
+  <%= f.submit "Edytuj koszt", class: "btn btn-primary" %><%= link_to "Wróć do listy kosztów",  costs_path, class: "btn btn-default" %>
+<% end %>

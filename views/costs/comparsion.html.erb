@@ -1,0 +1,64 @@
+<h3><b>Porównanie kosztów</b></h3>
+<div class="container">
+  <% if user_signed_in? %>
+<p><%= link_to "Wróć do edycji kosztów",  costs_path, class: "btn btn-success" %></p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Rodzaj kosztu</th>
+      <th>Twoje koszta [zł]</th>
+      <th>Średnia wszystkich użytkowników [zł]</th>
+      <th>Bilans</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Sala weselna</td><td><%= @costs_sum_hall.round %></td><td><%= @costs_avg_hall_all.round %></td>
+      <td><%= @costs_avg_hall_all.round - @costs_sum_hall.round %></td>
+    </tr>
+    <tr>
+      <td>Kościół</td><td><%= @costs_sum_church.round %></td><td><%= @costs_avg_church_all.round %></td>
+      <td><%= @costs_avg_church_all.round - @costs_sum_church.round %></td>
+    </tr>
+    <tr>
+      <td>Dekoracje</td><td><%= @costs_sum_decor.round %></td><td><%= @costs_avg_decor_all.round %></td>
+      <td><%= @costs_avg_decor_all.round - @costs_sum_decor.round %></td>
+    </tr>
+    <tr>
+      <td>Zespół</td><td><%= @costs_sum_band.round %></td><td><%= @costs_avg_band_all.round %></td>
+      <td><%= @costs_avg_band_all.round -  @costs_sum_band.round %></td>
+    </tr>
+    <tr>
+      <td>Fotograf</td><td><%= @costs_sum_photo.round %></td><td><%= @costs_avg_photo_all.round %></td>
+      <td><%= @costs_avg_photo_all.round - @costs_sum_photo.round %></td>
+    </tr>
+    <tr>
+      <td>Kamerzysta</td><td><%= @costs_sum_camera.round %></td><td><%= @costs_avg_camera_all.round %></td>
+      <td><%= @costs_avg_camera_all.round - @costs_sum_camera.round %></td>
+    </tr>
+    <tr>
+      <td>Biżuteria</td><td><%= @costs_sum_jewellery.round %></td><td><%= @costs_avg_jewellery_all.round %></td>
+      <td><%= @costs_avg_jewellery_all.round - @costs_sum_jewellery.round %></td>
+    </tr>
+    <tr>
+      <td>Inne</td><td><%= @costs_sum_others.round %></td><td><%= @costs_avg_others_all.round %></td>
+      <td><%= @costs_avg_others_all.round - @costs_sum_others.round %></td>
+    </tr>
+    <tr>
+      <td><b>ŁĄCZNIE</b></td><td><b><%= @costs_sum.round %> zł</b></td><td><b><%= @costs_avg_others_all.round + @costs_avg_jewellery_all.round +
+        @costs_avg_camera_all.round + @costs_avg_photo_all.round + @costs_avg_band_all.round + @costs_avg_decor_all.round +
+        @costs_avg_church_all.round + @costs_avg_hall_all.round%> zł</b></td>
+      <td><b><%= (@costs_avg_others_all.round + @costs_avg_jewellery_all.round +
+        @costs_avg_camera_all.round + @costs_avg_photo_all.round + @costs_avg_band_all.round + @costs_avg_decor_all.round +
+        @costs_avg_church_all.round + @costs_avg_hall_all.round) - @costs_sum.round  %> zł</b></td>
+    </tr>
+  </tbody>
+</table>
+  <% else %>
+  <p class="lead">
+    Musisz się zalogować, aby mieć dostęp do porówniania kosztów.
+    <%= link_to "Zaloguj się", new_user_session_path %>
+    <% end %>
+  </p>
+</div>

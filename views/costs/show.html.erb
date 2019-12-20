@@ -1,0 +1,10 @@
+<h3><b><u><%= @cost.cost_type %></u></b></h3>
+  <h4>
+  <br><b>Kwota:</b> <%= @cost.amount.round(2) %> zł
+  <br><b>Notatki:</b> <%= @cost.notes %>
+  </h4>
+    <h5>
+    <br><b>id:</b> <%= @cost.id %>
+    <br><b>utworzony:</b> <%= @cost.created_at %>
+    </h5>
+<%= link_to "Wstecz", costs_path, class: "btn btn-primary btn-xs" %>

@@ -1,0 +1,22 @@
+<body>
+  <% if user_signed_in? %>
+  <center><h1>Baza usług</h1>
+  <br>
+  <table class="table table-striped">
+      <tr>
+        <th><center><a href="wedding_halls"><img id="light" src="/images/sala_weselna.jpg" width="90%" height="90%"/></a></th>
+        <th><center><a href="bands"><img id="light" src="/images/zespol.jpg" width="90%" height="90%"/></th>
+        <th><center><a href="medias"><img id="light" src="/images/fotograf.jpg" width="90%" height="90%"/></th>
+      </tr>
+      <tr>
+        <th><center><%= link_to "Sale weselne", wedding_halls_path %></th>
+        <th><center><%= link_to "Muzyka", bands_path %></th>
+        <th><center><%= link_to "Fotografia i video", medias_path %></th>
+      </tr>
+  </table>
+  <% else %>
+  <p class="lead">
+    Musisz się zalogować, aby mieć dostęp do bazy usług.
+    <%= link_to "Zaloguj się", new_user_session_path %>
+    <% end %>
+</body>

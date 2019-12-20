@@ -1,0 +1,39 @@
+<h3><b>Lista kosztów</b></h3>
+<div class="container">
+  <% if user_signed_in? %>
+<p><%= link_to "Porównaj koszta",  comparsion_path, class: "btn btn-primary" %><%= link_to "Dodaj koszt",  new_cost_path, class: "btn btn-success" %></p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Rodzaj kosztu</th>
+      <th>Kwota [zł]</th>
+      <th>Notatka</th>
+      <th>Akcje</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @costs.each do |cost| %>
+      <tr>
+        <td><%= cost.cost_type %></td>
+        <td><%= cost.amount %></td>
+        <td><%= cost.notes %></td>
+        <td>
+          <%= link_to "Pokaż", cost_path(cost), class: "btn btn-default btn-xs" %>
+          <%= link_to "Edytuj", edit_cost_path(cost), class: "btn btn-primary btn-xs" %>
+          <%= link_to "Usuń", cost_path(cost), method: :delete, class: "btn btn-danger btn-xs", data: { confirm: "Czy na pewno chcesz usunąć?"} %>
+        </td>
+      </tr>
+    <% end %>
+      <tr>
+        <td><b>Suma wydatków:</b></td><td><%= @costs_sum %> zł</td>
+      </tr>
+  </tbody>
+</table>
+  <% else %>
+  <p class="lead">
+    Musisz się zalogować, aby mieć dostęp do listy kosztów.
+    <%= link_to "Zaloguj się", new_user_session_path %>
+    <% end %>
+  </p>
+</div>

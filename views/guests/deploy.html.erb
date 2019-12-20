@@ -1,0 +1,128 @@
+<h3><b>Rozmieść gości</b></h3>
+<h4><b>Obecna liczba gości:</b> <%= @guests_count %>
+<div class="container">
+  <% if user_signed_in? %>
+<br><p><%= link_to "Wróć do listy gości",  guests_path, class: "btn btn-primary" %><%= link_to "Resetuj",  deploy_path, class: "btn btn-primary" %></p>
+
+<style>
+.person {width: max-content;}
+
+</style>
+
+
+<h4>Proszę rozmieszczać gości kolejno od góry do dołu!</h4>
+<table class="table table-bordered" >
+  <tr><td>
+  <table class="table table-bordered" >
+    <thead>
+      <tr>
+        <th>Imię i nazwisko</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @guests.each do |guest| %>
+        <tr>
+          <td class="left-col-person"><div id="<%= guest.id %>"  class="person" draggable="true" ondragstart="drag(event)" ><%= guest.name %></div></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table></td>
+  <td>
+  <table style="float: right" width='70%'  class="table table-bordered" >
+    <thead>
+      <tr>
+        <th><center>Numer stołu</th>
+        <th><center>Osoby</th>
+        <th><center>Liczba osób</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td width='10%'>Stół 1</td>
+          <td id='stol_1' class='stoly' ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+          <td width='10%' id='liczba_osob_1' class='liczba_osob'>0</td>
+        </tr>
+        <tr>
+          <td>Stół 2</td>
+          <td id='stol_2' class='stoly' ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+          <td id='liczba_osob_2' class='liczba_osob'>0</td>
+        </tr>
+        <tr>
+          <td>Stół 3</td>
+          <td id='stol_3' class='stoly' ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+          <td id='liczba_osob_3' class='liczba_osob'>0</td>
+        </tr>
+        <tr>
+          <td>Stół 4</td>
+          <td id='stol_4' class='stoly' ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+          <td id='liczba_osob_4' class='liczba_osob'>0</td>
+        </tr>
+    </tbody>
+  </table>
+</td></tr></table>
+
+
+  <% else %>
+  <p class="lead">
+    Musisz się zalogować, aby mieć dostęp do listy gości.
+    <%= link_to "Zaloguj się", new_user_session_path %>
+    <% end %>
+  </p>
+
+  <script>
+    function allowDrop(ev) {
+      if(ev.target.className != 'person'){
+          ev.preventDefault();
+      }
+      console.log('len:'+ev.target.className+'text: '+ev.target.id);
+    }
+
+    function drag(ev) {
+      ev.dataTransfer.setData("text", ev.target.id);
+      console.log('event');
+    }
+
+    function drop(ev) {
+      ev.preventDefault();
+      var data = ev.dataTransfer.getData("text");
+      ev.target.appendChild(document.getElementById(data));
+      clear()
+      // guest_count(ev);
+      test();
+      // console.log('drop: '+ ev.appendChild.id);
+    }
+
+    function guest_count(ev){
+
+      var id_stolu = ev.target.id;
+      var count_guest = document.getElementById(id_stolu).childNodes.length;
+      document.getElementById('liczba_osob_'+id_stolu[id_stolu.length-1]).innerText = count_guest;
+      console.log('count: '+id_stolu[id_stolu.length-1]);
+    }
+
+    function clear(){
+
+      var slides = document.getElementsByClassName("liczba_osob");
+      for(var i = 0; i < slides.length; i++)
+      {
+        console.log('sss');
+         // Distribute(slides.item(i));
+         // document.getElementById('liczba_osob_'+id_stolu[id_stolu.length-1]).innerText = count_guest;
+         slides[i].innerText = '0';
+      }
+    }
+
+    function test(){
+
+      var slides = document.getElementsByClassName("stoly");
+      for(var i = 0; i < slides.length; i++)
+      {
+         var id_stolu = slides[i].id;
+         var count_guest = document.getElementById(id_stolu).childNodes.length;
+         document.getElementById('liczba_osob_'+id_stolu[id_stolu.length-1]).innerText = count_guest;
+         console.log('test: '+count_guest);
+      }
+    }
+
+  </script>
+</div>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>~~Udane Wesele~~</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <nav class="navbar fixed-top navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <a class ="navbar-brand" href="<%= root_path %>">
+          <div id="logo">Udane Wesele</div>
+      </div>
+        <ul class="nav navbar-nav">
+           <li <% if params[:controller] == "home" && params[:action] == "index" %>
+             class="active"<% end %>>
+             <a class ="navbar-brand" href="<%= root_path %>">Strona główna</a>
+           </li>
+           <li <% if params[:controller] == "home" && params[:action] == "about" %>
+             class="active"<% end %>>
+             <a class ="navbar-brand" href="<%= about_path %>">O aplikacji</a>
+           </li>
+           <li <% if params[:controller] == "guests" && params[:action] == "index" %>
+             class="active"<% end %>>
+             <a class ="navbar-brand" href="<%= guests_path %>">Lista gości</a>
+           </li>
+           <li <% if params[:controller] == "guests" && params[:action] == "deploy" %>
+             class="active"<% end %>>
+             <a class ="navbar-brand" href="<%= deploy_path %>">Rozmieść gości</a>
+           </li>
+           <li <% if params[:controller] == "costs" && params[:action] == "index" %>
+             class="active"<% end %>>oca
+             <a class ="navbar-brand" href="<%= costs_path %>">Lista kosztów</a>
+           </li>
+           <li <% if params[:controller] == "calcs" && params[:action] == "index" %>
+             class="active"<% end %>>
+             <a class ="navbar-brand" href="<%= calcs_path %>">Kalkulator</a>
+           </li>
+           <li <% if params[:controller] == "services" && params[:action] == "index" %>
+             class="active"<% end %>>
+             <a class ="navbar-brand" href="<%= services_path %>">Baza usług</a>
+           </li>
+        </ul>
+    </div>
+  </nav>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <% if user_signed_in? %>
+    <a class ="navbar-brand"><font color='black'>
+    <%= link_to "Wyloguj się:", destroy_user_session_path, :method => :delete %> <%= current_user.email %></font></a>
+    <% else %>
+    <a class ="navbar-brand">
+    <%= link_to "Zaloguj się", new_user_session_path %>, by mieć dostęp do wielu atrakcyjnych funkcjonalności w aplikacji!</a>
+    <% end %>
+  </nav>
+  <div class="container">
+
+     <%= yield %>
+
+  </div>
+
+  <div class="footer">
+    <br><br><br><center><i>&copy; Krystian Neumann 2019</i></center>
+  </div>
+</body>
+</html>

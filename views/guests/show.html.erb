@@ -1,0 +1,11 @@
+<h3><b><u><%= @guest.name %></u></b></h3>
+  <h4>
+  <br><b>rodzina/grupa:</b> <%= @guest.family %>
+  <br><b>rola:</b> <%= @guest.role %>
+  </h4>
+    <h5>
+    <br><b>id:</b> <%= @guest.id %>
+    <br><b>utworzony:</b> <%= @guest.created_at %>
+    <br><b>przez:</b> <%= @guest.user_id %>
+    </h5>
+<%= link_to "Wstecz", guests_path, class: "btn btn-primary btn-xs" %>

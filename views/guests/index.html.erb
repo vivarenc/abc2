@@ -1,0 +1,39 @@
+<h3><b>Lista gości</b></h3>
+<h4><b>Obecna liczba gości:</b> <%= @guests_count %>
+<div class="container">
+  <% if user_signed_in? %>
+<br><p><%= link_to "Rozmieść gości",  deploy_path, class: "btn btn-primary" %><%= link_to "Dodaj gościa",  new_guest_path, class: "btn btn-success" %></p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Imię i nazwisko</th>
+      <th>Grupa wiekowa</th>
+      <th>Rodzina</th>
+      <th>Rola</th>
+      <th>Akcje</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @guests.each do |guest| %>
+      <tr>
+        <td><%= guest.name %></td>
+        <td><%= guest.age_group %></td>
+        <td><%= guest.family %></td>
+        <td><%= guest.role %></td>
+        <td>
+          <%= link_to "Pokaż", guest_path(guest), class: "btn btn-default btn-xs" %>
+          <%= link_to "Edytuj", edit_guest_path(guest), class: "btn btn-primary btn-xs" %>
+          <%= link_to "Usuń", guest_path(guest), method: :delete, class: "btn btn-danger btn-xs", data: { confirm: "Czy na pewno chcesz usunąć?"} %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+  <% else %>
+  <p class="lead">
+    Musisz się zalogować, aby mieć dostęp do listy gości.
+    <%= link_to "Zaloguj się", new_user_session_path %>
+    <% end %>
+  </p>
+</div>
